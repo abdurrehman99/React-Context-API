@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Users } from './Context';
 import { Spin } from "react-loading-io";
 
 export default function UserList() {
+
+    const [ myusers, setUsers] = useState([]);
+
     return (
         <div className='container'>
             <h1 className='text-center'>
@@ -10,17 +13,17 @@ export default function UserList() {
             </h1>
             <Users>
                 {
-                    (users) =>{
-                        console.log(users);
+                    (value) =>{
+                        setUsers(value);
                         {
-                            if(users.length === 0){
+                            if(myusers.length === 0){
                                 return <Spin style={{marginLeft : '45%', marginTop : '10%'}} size={100} color='#00008b' />
                             }
                             else{
                                return (
                                     <div className='row'>
                                         {
-                                            users.map( (user,index)=>{
+                                            myusers.map( (user,index)=>{
                                                 return <div key={index} className='col-xs-12 col-sm-4 col-md-3'>
                                                             <div className="card my-2" >
                                                                 <div className="card-body">
